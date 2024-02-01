@@ -2,16 +2,20 @@ import java.awt.*;
 
 public class Scania extends CommonBaseCar {
 
-    private boolean trailerUp;
+    private boolean trailerDown;
     private double trailerAngle;
     public Scania() {
         super(2, Color.blue, 220, "Scania", 0.0, 0.0, 0.0);
-        this.trailerUp = false;
+        this.trailerDown = true;
         this.trailerAngle = 0.0;
     }
 
     public double getTrailerAngle(){
         return trailerAngle;
+    }
+
+    public boolean isTrailerDown() {
+        return trailerDown;
     }
 
     public void tipTrailer(double angle) {
@@ -28,19 +32,19 @@ public class Scania extends CommonBaseCar {
 
     @Override
     public void startEngine() {
-        if (!trailerUp) {
+        if (isTrailerDown()) {
             super.startEngine();
         } else {
-            System.err.println();
+            System.err.println("You can't start the truck while trailer is open");
         }
     }
 
     @Override
     public void gas(double amount) {
-        if (!trailerUp) {
+        if (isTrailerDown()) {
             super.gas(amount);
         } else {
-            System.err.println();
+            System.err.println("You can't move while trailer is open");
         }
     }
 }

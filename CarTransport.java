@@ -1,33 +1,55 @@
 import java.awt.*;
+import java.util.ArrayList;
 
-public class carTransport extends CommonBaseCar {
+public class CarTransport extends CommonBaseCar {
 
-    private boolean rampDown;
-    private double distanceFromCar;
-    public carTransport() {
+    private boolean rampUp;
+    private ArrayList carsLoaded = new ArrayList<>();
+    private final int maxCars = 6;
+
+    public CarTransport() {
         super(2, Color.blue, 220, "carTransport", 0.0, 0.0, 0.0);
-        rampDown = false;
+        rampUp = true;
     }
 
-    public void setRampDown(boolean rampDown) {
+    private boolean isRampUp() {
+        return rampUp;
+    }
+
+    public void raiseRamp() {
         if (getCurrentSpeed() == 0) {
-            this.rampDown = rampDown;
+            rampUp = true;
         }
     }
 
-    private boolean isRampDown() {
-        return rampDown;
-    }
-
-    private void loadCar() {
-        if (isRampDown() && getCurrentSpeed() == 0) {
-
+    public void lowerRamp() {
+        if (getCurrentSpeed() == 0){
+            rampUp = false;
         }
     }
 
-    private void unloadCar() {
-        if (isRampDown() && getCurrentSpeed() == 0) {
-
+    public int getLoadedCars() {
+        if (carsLoaded.size() <= maxCars) {
+            return carsLoaded.size();
+        } else {
+            return maxCars;
         }
     }
+
+    public void loadCar(CommonBaseCar car) {
+        if (!isRampUp() && getCurrentSpeed() == 0 && carsLoaded.size() < maxCars) {
+            carsLoaded.add(car);
+        } else {
+            System.err.println("");
+        }
+    }
+
+    public void unloadCar() {
+        if (!isRampUp() && getCurrentSpeed() == 0 && !carsLoaded.isEmpty()) {
+            carsLoaded.remove(carsLoaded.size() - 1);
+        } else {
+            System.err.println("");
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ public class ScaniaTest {
         Scania scania = new Scania(); // Skapar ett nytt objekt
         double initialFlapAngle = 0;
         for (int i = 0; i < 4; i++) {
-            scania.raiseFlap();
+            scania.raiseRamp();
         }
         int expectedFlapAngle = 40;
         assertEquals(expectedFlapAngle, scania.getFlapAngle(), 0);
@@ -21,7 +21,7 @@ public class ScaniaTest {
         Scania scania = new Scania(); // Skapar ett nytt objekt
         double initialFlapAngle = 30;
         for (int i = 0; i < 4; i++) {
-            scania.lowerFlap();
+            scania.lowerRamp();
         }
         double expectedFlapAngle = 0;
         assertEquals(expectedFlapAngle, scania.getFlapAngle(), 0);

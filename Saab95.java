@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Saab95 extends CommonBaseCar{
+public class Saab95 extends SmallCar{
 
     private boolean turboOn = false; // Attribut boolean specifik för Saaben som används i speedFactor.
 

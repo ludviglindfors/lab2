@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends CommonBaseCar {
+public class Scania extends Truck {
 
     private int flapAngle;
     private boolean currentlyMoving;
@@ -10,20 +10,17 @@ public class Scania extends CommonBaseCar {
         this.currentlyMoving = false;
     }
 
+    @Override
+    protected void raiseRamp() {
+        flapAngle = Math.min(flapAngle + 10, 70);
+    }
+
+    @Override
+    protected void lowerRamp() {
+        flapAngle = Math.max(flapAngle - 10, 0);
+    }
     public double getFlapAngle() {
         return flapAngle;
-    }
-
-    public void raiseFlap() {
-        if (!currentlyMoving) {
-            flapAngle = Math.min(flapAngle + 10, 70);
-        }
-    }
-
-    public void lowerFlap() {
-        if (!currentlyMoving) {
-            flapAngle = Math.max(flapAngle - 10, 0);
-        }
     }
 
     private boolean isFlapDown() {

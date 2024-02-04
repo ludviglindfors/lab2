@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class CarTransport extends CommonBaseCar {
+public class CarTransport extends Truck {
 
     private double loadingRadius = 14;
     private boolean rampUp;
@@ -36,16 +36,14 @@ public class CarTransport extends CommonBaseCar {
         return rampUp;
     }
 
-    public void raiseRamp() {
-        if (getCurrentSpeed() == 0) {
-            rampUp = true;
-        }
+    @Override
+    protected void raiseRamp() {
+        rampUp = true;
     }
 
-    public void lowerRamp() {
-        if (getCurrentSpeed() == 0){
-            rampUp = false;
-        }
+    @Override
+    protected void lowerRamp() {
+        rampUp = false;
     }
 
     public int getLoadedCars() {
@@ -57,14 +55,14 @@ public class CarTransport extends CommonBaseCar {
     }
 
     public void loadCar(CommonBaseCar car) {
-        if (!Objects.equals(car.modelName, "carTransport")) {
+        if (car instanceof SmallCar) {
             if (isInVicinity(car) && !isRampUp() && getCurrentSpeed() == 0 && carsLoaded.size() < maxCars) {
                 carsLoaded.add(car);
             } else {
                 System.err.println("CarTransport cannot load car");
             }
         } else {
-            System.err.println("CarTransport cannot load another carTransport");
+            System.err.println("CarTransport cannot load another truck");
         }
     }
 

@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Volvo240 extends CommonBaseCar {
+public class Volvo240 extends SmallCar {
 
     public Volvo240() { // Konstruktor för Volvo som definerar startvärden och konstanta värden för en Volvo240.
         super(4, Color.black, 100, "Volvo240", 0.0, 0.0, 0.0);
